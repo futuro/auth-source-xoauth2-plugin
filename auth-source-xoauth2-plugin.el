@@ -36,6 +36,10 @@
 ;;       :config
 ;;       (auth-source-xoauth2-plugin-enable))
 
+;; After enabling, smtpmail should be supported.  To enable this in Gnus
+;; nnimap, you should also set `(nnimap-authenticator xoauth2)' in the
+;; corresponding account settings in `gnus-secondary-select-methods'
+
 ;; auth-source uses the `secret' field in auth-source file as password
 ;; for authentication, including xoauth2.  To decide which
 ;; authentication method to use (e.g. plain password vs xoauth2), it
