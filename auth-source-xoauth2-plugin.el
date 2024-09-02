@@ -24,7 +24,17 @@
 ;;; Commentary:
 
 ;; This package enables support for xoauth2 authentication with
-;; auth-source.
+;; auth-source.  To set up, please put this file in the `load-path' of
+;; Emacs, and add the following lines in your Emacs configuration:
+
+;;     (require 'auth-source-xoauth2-plugin)
+;;     (auth-source-xoauth2-plugin-enable)
+
+;; or with use-package:
+
+;;     (use-package auth-source-xoauth2-plugin
+;;       :config
+;;       (auth-source-xoauth2-plugin-enable))
 
 ;; auth-source uses the `secret' field in auth-source file as password
 ;; for authentication, including xoauth2.  To decide which
