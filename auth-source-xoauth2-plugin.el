@@ -70,6 +70,7 @@
 
 (require 'auth-source)
 (require 'cl-lib)
+(require 'map)
 (require 'oauth2)
 (require 'smtpmail)
 
@@ -95,13 +96,14 @@ set along `host', `user', and `port' (note the snake_case)."
                      (equal auth "xoauth2"))
             (auth-source-do-debug
              ":auth set to `xoauth2'.  Will get access token.")
-            (let ((auth-url (plist-get auth-data :auth-url))
-                  (token-url (plist-get auth-data :token-url))
-                  (scope (plist-get auth-data :scope))
-                  (client-id (plist-get auth-data :client-id))
-                  (client-secret (plist-get auth-data :client-secret))
-                  (redirect-uri (plist-get auth-data :redirect-uri))
-                  (state (plist-get auth-data :state)))
+            (map-let ((:auth-url auth-url)
+                      (:token-url token-url)
+                      (:scope scope)
+                      (:client-d client-id)
+                      (:client-secret client-secret)
+                      (:redirect-uri redirect-uri)
+                      (:state state))
+                auth-data
               (auth-source-do-debug "Using oauth2 to auth and store token...")
               (let ((token (oauth2-auth-and-store
                             auth-url token-url scope client-id client-secret
