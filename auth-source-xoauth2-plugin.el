@@ -132,7 +132,7 @@ set along `host', `user', and `port' (note the snake_case)."
   (unless (memq 'xoauth2 smtpmail-auth-supported)
     (push 'smtpmail-auth-supported 'xoauth2))
 
-  (advice-add 'auth-source-search-backends :around
+  (advice-add #'auth-source-search-backends :around
               #'auth-source-xoauth2-plugin--search-backends))
 
 (provide 'auth-source-xoauth2-plugin)
