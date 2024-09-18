@@ -123,14 +123,14 @@ set along `host', `user', and `port' (note the snake_case)."
         (unless (and check-secret
                      (not (plist-get auth-data :secret)))
           (auth-source-do-debug "Updating auth-source-search results.")
-          (add-to-list 'res auth-data t)))
+          (push 'res auth-data)))
       res)))
 
 ;;;###autoload
 (defun auth-source-xoauth2-plugin-enable ()
   "Enable auth-source-xoauth2-plugin."
   (unless (memq 'xoauth2 smtpmail-auth-supported)
-    (add-to-list 'smtpmail-auth-supported 'xoauth2))
+    (push 'smtpmail-auth-supported 'xoauth2))
 
   (advice-add 'auth-source-search-backends :around
               #'auth-source-xoauth2-plugin--search-backends))
