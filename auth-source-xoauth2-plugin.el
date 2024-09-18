@@ -138,7 +138,7 @@ set along `host', `user', and `port' (note the snake_case)."
 (defun auth-source-xoauth2-plugin-enable ()
   "Enable auth-source-xoauth2-plugin."
   (unless (memq 'xoauth2 smtpmail-auth-supported)
-    (push 'smtpmail-auth-supported 'xoauth2))
+    (push 'xoauth2 smtpmail-auth-supported))
 
   (advice-add #'auth-source-search-backends :around
               #'auth-source-xoauth2-plugin--search-backends))
