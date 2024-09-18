@@ -24,7 +24,15 @@
 ;;; Commentary:
 
 ;; This package enables support for xoauth2 authentication with
-;; auth-source.  To set up, please put this file in the `load-path' of
+;; auth-source.  OAuth 2.0, which stands for “Open Authorization”, is a
+;; standard designed to allow a website or application to access
+;; resources hosted by other web apps on behalf of a user.  The OAuth
+;; 2.0 Authorization Protocol Extensions (xoauth2) extend the OAuth 2.0
+;; Authentication Protocol and the JSON Web Token (JWT) to enable
+;; server-to-server authentication.  More info please check out:
+;; https://stackoverflow.com/a/76389679/2337550
+
+;; To set up, please put this file in the `load-path' of
 ;; Emacs, and add the following lines in your Emacs configuration:
 
 ;;     (require 'auth-source-xoauth2-plugin)
