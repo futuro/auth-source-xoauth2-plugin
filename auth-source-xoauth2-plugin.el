@@ -103,13 +103,14 @@ set along `host', `user', and `port' (note the snake_case)."
                   (client-secret (plist-get auth-data :client-secret))
                   (redirect-uri (plist-get auth-data :redirect-uri))
                   (state (plist-get auth-data :state)))
-              (auth-source-do-trivia "Using oauth2 to auth and store token...")
+              (auth-source-do-debug "Using oauth2 to auth and store token...")
               (let ((token (oauth2-auth-and-store
                             auth-url token-url scope client-id client-secret
                             redirect-uri state)))
                 (auth-source-do-trivia "oauth2 token: %s" (pp-to-string token))
-                (auth-source-do-trivia "Refreshing token...")
+                (auth-source-do-debug "Refreshing token...")
                 (oauth2-refresh-access token)
+                (auth-source-do-debug "Refresh successful.")
                 (auth-source-do-trivia "oauth2 token after refresh: %s"
                                        (pp-to-string token))
                 (let ((access-token (oauth2-token-access-token token)))
@@ -119,7 +120,7 @@ set along `host', `user', and `port' (note the snake_case)."
 
         (unless (and check-secret
                      (not (plist-get auth-data :secret)))
-          (auth-source-do-trivia "Updating auth-source-search results.")
+          (auth-source-do-debug "Updating auth-source-search results.")
           (add-to-list 'res auth-data t)))
       res)))
 
