@@ -92,8 +92,7 @@ set along `host', `user', and `port' (note the snake_case)."
         (auth-source-do-trivia "Matched auth data: %s" (pp-to-string auth-data))
         (let ((auth (plist-get auth-data :auth)))
           (when (and auth
-                     (stringp auth)
-                     (string= auth "xoauth2"))
+                     (equal auth "xoauth2"))
             (auth-source-do-debug
              ":auth set to `xoauth2'.  Will get access token.")
             (let ((auth-url (plist-get auth-data :auth-url))
