@@ -117,7 +117,8 @@ set along `host', `user', and `port' (note the snake_case)."
                 (let ((access-token (oauth2-token-access-token token)))
                   (auth-source-do-trivia
                    "Updating :secret with access-token: %s" access-token)
-                  (plist-put auth-data :secret access-token))))))
+                  (setq auth-data
+                        (plist-put auth-data :secret access-token)))))))
 
         (unless (and check-secret
                      (not (plist-get auth-data :secret)))
