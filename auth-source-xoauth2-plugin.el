@@ -83,11 +83,13 @@
 (require 'smtpmail)
 
 (defun auth-source-xoauth2-plugin--search-backends (orig-fun &rest args)
-  "Perform auth-source-search and set password as access-token when requested.
-The substitution only happens if one sets `auth' to `xoauth2' in
-your auth-source-entry.  It is expected that `token_url',
-`client_id', `client_secret', and `refresh_token' are properly
-set along `host', `user', and `port' (note the snake_case)."
+  "Perform `auth-source-search' and set password as access-token when requested.
+Calls ORIG-FUN which would be `auth-source-search-backends' with
+ARGS to get the auth-source-entry.  The substitution only happens
+if one sets `auth' to `xoauth2' in your auth-source-entry.  It is
+expected that `token_url', `client_id', `client_secret', and
+`refresh_token' are properly set along `host', `user', and
+`port' (note the snake_case)."
   (auth-source-do-trivia "Advising auth-source-search")
   (let (check-secret)
     (when (memq :secret (nth 5 args))
