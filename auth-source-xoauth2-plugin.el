@@ -102,8 +102,7 @@ expected that `token_url', `client_id', `client_secret', and
       (dolist (auth-data orig-res)
         (auth-source-do-trivia "Matched auth data: %s" (pp-to-string auth-data))
         (let ((auth (plist-get auth-data :auth)))
-          (when (and auth
-                     (equal auth "xoauth2"))
+          (when (equal auth "xoauth2")
             (auth-source-do-debug
              ":auth set to `xoauth2'.  Will get access token.")
             (map-let ((:auth-url auth-url)
