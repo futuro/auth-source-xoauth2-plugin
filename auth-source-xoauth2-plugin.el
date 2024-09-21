@@ -135,14 +135,38 @@ expected that `token_url', `client_id', `client_secret', and
           (push auth-data res)))
       res)))
 
-;;;###autoload
-(defun auth-source-xoauth2-plugin-enable ()
+(defvar auth-source-xoauth2-plugin--enabled-xoauth2-by-us nil
+  "Used for tracking whether xoauth2 in smtpmail-auth-supported is
+set by us.")
+
+(defun auth-source-xoauth2-plugin--enable ()
   "Enable auth-source-xoauth2-plugin."
   (unless (memq 'xoauth2 smtpmail-auth-supported)
-    (push 'xoauth2 smtpmail-auth-supported))
+    (push 'xoauth2 smtpmail-auth-supported)
+    (setq auth-source-xoauth2-plugin--enabled-xoauth2-by-us t))
 
   (advice-add #'auth-source-search-backends :around
               #'auth-source-xoauth2-plugin--search-backends))
+
+(defun auth-source-xoauth2-plugin--disable ()
+  "Disable auth-source-xoauth2-plugin."
+  (when (and auth-source-xoauth2-plugin--enabled-xoauth2-by-us
+             (memq 'xoauth2 smtpmail-auth-supported))
+    (delete 'xoauth2 smtpmail-auth-supported)
+    (setq auth-source-xoauth2-plugin--enabled-xoauth2-by-us nil))
+
+  (advice-remove #'auth-source-search-backends
+                 #'auth-source-xoauth2-plugin--search-backends))
+
+(define-minor-mode auth-source-xoauth2-plugin-mode
+  "Toggle auth-source-xoauth2-plugin-mode.
+Enable auth-source-xoauth2-plugin-mode to use xoauth2
+authentications for emails."
+  :lighter nil
+  :global t
+  (if auth-source-xoauth2-plugin-mode
+      (auth-source-xoauth2-plugin--enable)
+    (auth-source-xoauth2-plugin--disable)))
 
 (provide 'auth-source-xoauth2-plugin)
 
