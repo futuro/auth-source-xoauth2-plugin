@@ -108,7 +108,7 @@ expected that `token_url', `client_id', `client_secret', and
             (map-let ((:auth-url auth-url)
                       (:token-url token-url)
                       (:scope scope)
-                      (:client-d client-id)
+                      (:client-id client-id)
                       (:client-secret client-secret)
                       (:redirect-uri redirect-uri)
                       (:state state))
@@ -132,7 +132,7 @@ expected that `token_url', `client_id', `client_secret', and
         (unless (and check-secret
                      (not (plist-get auth-data :secret)))
           (auth-source-do-debug "Updating auth-source-search results.")
-          (push 'res auth-data)))
+          (push auth-data res)))
       res)))
 
 ;;;###autoload
