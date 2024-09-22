@@ -41,7 +41,7 @@
 ;; or with use-package:
 
 ;;     (use-package auth-source-xoauth2-plugin
-;;       :config
+;;       :custom
 ;;       (auth-source-xoauth2-plugin-mode t))
 
 ;; After enabling, smtpmail should be supported.  To enable this in Gnus
@@ -107,13 +107,13 @@ expected that `token_url', `client_id', `client_secret', and
           (when (equal auth "xoauth2")
             (auth-source-do-debug
              ":auth set to `xoauth2'.  Will get access token.")
-            (map-let ((:auth-url auth-url)
-                      (:token-url token-url)
-                      (:scope scope)
-                      (:client-id client-id)
-                      (:client-secret client-secret)
-                      (:redirect-uri redirect-uri)
-                      (:state state))
+            (map-let (:auth-url
+                      :token-url
+                      :scope
+                      :client-id
+                      :client-secret
+                      :redirect-uri
+                      :state)
                 auth-data
               (auth-source-do-debug "Using oauth2 to auth and store token...")
               (let ((token (oauth2-auth-and-store
@@ -138,8 +138,7 @@ expected that `token_url', `client_id', `client_secret', and
       res)))
 
 (defvar auth-source-xoauth2-plugin--enabled-xoauth2-by-us nil
-  "Used for tracking whether xoauth2 in smtpmail-auth-supported is
-set by us.")
+  "Non-nil means `smtpmail-auth-supported' was set by us.")
 
 (defun auth-source-xoauth2-plugin--enable ()
   "Enable auth-source-xoauth2-plugin."
@@ -154,17 +153,17 @@ set by us.")
   "Disable auth-source-xoauth2-plugin."
   (when (and auth-source-xoauth2-plugin--enabled-xoauth2-by-us
              (memq 'xoauth2 smtpmail-auth-supported))
-    (delete 'xoauth2 smtpmail-auth-supported)
+    (setq smtpmail-auth-supported (delq 'xoauth2 smtpmail-auth-supported))
     (setq auth-source-xoauth2-plugin--enabled-xoauth2-by-us nil))
 
   (advice-remove #'auth-source-search-backends
                  #'auth-source-xoauth2-plugin--search-backends))
 
+;;;###autoload
 (define-minor-mode auth-source-xoauth2-plugin-mode
   "Toggle auth-source-xoauth2-plugin-mode.
 Enable auth-source-xoauth2-plugin-mode to use xoauth2
 authentications for emails."
-  :lighter nil
   :global t
   (if auth-source-xoauth2-plugin-mode
       (auth-source-xoauth2-plugin--enable)
