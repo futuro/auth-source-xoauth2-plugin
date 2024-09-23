@@ -1,4 +1,4 @@
-;; auth-source-xoauth2-plugin.el -- authentication source plugin for xoauth2 -*- lexical-binding: t -*-
+;;; auth-source-xoauth2-plugin.el --- authentication source plugin for xoauth2 -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2024 Xiyue Deng <manphiz@gmail.com>
 
