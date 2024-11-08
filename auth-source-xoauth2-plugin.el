@@ -54,7 +54,7 @@
 ;; for authentication, including xoauth2.  To decide which
 ;; authentication method to use (e.g. plain password vs xoauth2), it
 ;; inspects the `auth' field from the auth-source entry, and if the
-;; value is `xaouth2', it will try to gather data and get the access
+;; value is `xoauth2', it will try to gather data and get the access
 ;; token for use of xoauth2 authentication; otherwise, it will fallback
 ;; to the default authentication method.
 
