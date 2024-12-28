@@ -35,7 +35,9 @@ the following:
 #+BEGIN_SRC emacs-lisp
   (nnimap "account_name"
           ...
-          (nnimap-authenticator xoauth2))
+          (nnimap-authenticator xoauth2)
+          ...
+          )
 #+END_SRC
 
 To disable, just toggle the minor mode off by calling `M-x
@@ -55,7 +57,7 @@ following data from the auth-source entry: `auth-url', `token-url',
 `state'.  An example Authinfo entry (in JSON format as
 ~/.authinfo.json.gpg) for an Gmail account may look like below:
 
-#+BEGIN_SRC json
+#+BEGIN_SRC js
   {
     "machine": "<your_imap_address_or_email>",
     "login": "<your_email>",
