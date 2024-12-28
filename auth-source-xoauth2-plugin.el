@@ -23,58 +23,7 @@
 
 ;;; Commentary:
 
-;; This package provides a global minor mode for enabling support for
-;; xoauth2 authentication with auth-source.  OAuth 2.0, which stands for
-;; “Open Authorization”, is a standard designed to allow a website or
-;; application to access resources hosted by other web apps on behalf of
-;; a user.  The OAuth 2.0 Authorization Protocol Extensions (xoauth2)
-;; extend the OAuth 2.0 Authentication Protocol and the JSON Web Token
-;; (JWT) to enable server-to-server authentication.  More info please
-;; check out: https://stackoverflow.com/a/76389679/2337550
-
-;; To set up, please put this file in the `load-path' of Emacs, and add
-;; the following lines in your Emacs configuration:
-
-;;     (require 'auth-source-xoauth2-plugin)
-;;     (auth-source-xoauth2-plugin-mode t)
-
-;; or with use-package:
-
-;;     (use-package auth-source-xoauth2-plugin
-;;       :custom
-;;       (auth-source-xoauth2-plugin-mode t))
-
-;; After enabling, smtpmail should be supported.  To enable this in Gnus
-;; nnimap, you should also set `(nnimap-authenticator xoauth2)' in the
-;; corresponding account settings in `gnus-secondary-select-methods'.
-;; To disable, just toggle the minor mode off by calling `M-x
-;; auth-source-xoauth2-plugin-mode' again.
-
-;; auth-source uses the `secret' field in auth-source file as password
-;; for authentication, including xoauth2.  To decide which
-;; authentication method to use (e.g. plain password vs xoauth2), it
-;; inspects the `auth' field from the auth-source entry, and if the
-;; value is `xoauth2', it will try to gather data and get the access
-;; token for use of xoauth2 authentication; otherwise, it will fallback
-;; to the default authentication method.
-
-;; When xoauth2 authentication is enabled, it will try to get the
-;; following data from the auth-source entry: `auth-url', `token-url',
-;; `scope', `client-id', `client-secret', `redirect-uri', and optionally
-;; `state'.  These information will be used by oauth2 to retrieve the
-;; access-token.  This package uses an advice to switch the auth-source
-;; search result from the `password' to the `access-token' it got, which
-;; in turn will be used to construct the xoauth2 authentication string,
-;; currently in nnimap-login and smtpmail-try-auth-method.  To really
-;; enable xoauth2 in smtpmail, it will add 'xoauth2 to
-;; 'smtpmail-auth-supported (if it is not already in the list) using
-;; `add-to-list' so that xoauth2 is tried first.
-
-;; Note that currently the auth-source requires the searched entry must
-;; have `secret' field set in the entry, which is not necessary when
-;; using xoauth2.  Therefore in the advice it temporarily disables
-;; checking for `:secret' if set and perform the search, and check the
-;; result before returning.
+;; See README.org for an introduction and usages.
 
 ;;; Code:
 
