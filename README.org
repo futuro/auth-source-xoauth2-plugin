@@ -1,3 +1,6 @@
+#+TITLE: Auth-source xoauth2 plugin
+#+DATE: 2024-11-08
+
 * Introduction
 
 This package provides a global minor mode for enabling support for
