@@ -23,7 +23,14 @@
 
 ;;; Commentary:
 
-;; See README.org for an introduction and usages.
+;; An auth-source plugin to enable xoauth2 support.
+
+;; This package provides a global minor mode for enabling xoauth2 in
+;; auth-source.  Once adding information required for xoauth2 authentication in
+;; your auth-source file and enabling the global minor mode, one can
+;; authenticate through xoauth2 to supported services, e.g. Gmail, etc.
+
+;; See README.org for a more detailed introduction and usages.
 
 ;;; Code:
 
