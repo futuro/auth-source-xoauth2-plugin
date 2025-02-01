@@ -58,7 +58,9 @@ When xoauth2 authentication is enabled, it will try to get the
 following data from the auth-source entry: `auth-url', `token-url',
 `scope', `client-id', `client-secret', `redirect-uri', and optionally
 `state'.  An example Authinfo entry (in JSON format as
-~/.authinfo.json.gpg) for an Gmail account may look like below:
+`~/.authinfo.json.gpg') for an Gmail account may look like below (you
+need to fill in the data between `<' and `>' based on your account
+settings):
 
 #+BEGIN_SRC js
   {
@@ -80,14 +82,28 @@ This package uses an advice to switch the auth-source search result
 from the `password' to the `access-token' it got, which in turn will
 be used to construct the xoauth2 authentication string, currently in
 nnimap-login and smtpmail-try-auth-method.  To really enable xoauth2
-in smtpmail, it will add 'xoauth2 to 'smtpmail-auth-supported (if it
+in smtpmail, it will add \'xoauth2 to \'smtpmail-auth-supported (if it
 is not already in the list) using `add-to-list' so that xoauth2 is
 tried first.
+
+** Comparison with other xoauth2 implementations
+
+*** [[https://github.com/ccrusius/auth-source-xoauth2][auth-source-xoauth2]]
+
+This plugin takes inspirations from auth-source-xoauth2 to advice the
+auth-source-search backends to add xoauth2 access-token for
+authentication.  The implementation is independent and reuses many
+existing facilities in `auth-source.el', where auth-source-xoauth2
+reimplemented most of the required functions itself.
+
+`auth-source-xoauth2-plugin' also makes use of `oauth2.el' and its
+storage for storing temporary/ephemeral data tokens, where
+`auth-source-xoauth2' implemented its own storage.
 
 ** Notes
 
 Currently the auth-source requires the searched entry must have
 `secret' field set in the entry, which is not necessary when using
 xoauth2.  Therefore in the advice it temporarily disables checking
-for `:secret' if set and perform the search, and check the result
+for ~:secret~ if set and perform the search, and check the result
 before returning.
