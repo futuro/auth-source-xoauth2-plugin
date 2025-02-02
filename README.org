@@ -63,18 +63,22 @@ need to fill in the data between `<' and `>' based on your account
 settings):
 
 #+BEGIN_SRC js
-  {
-    "machine": "<your_imap_address_or_email>",
-    "login": "<your_email>",
-    "port": "imaps",
-    "auth": "xoauth2",
-    "auth-url": "https://accounts.google.com/o/oauth2/auth",
-    "token-url": "https://accounts.google.com/o/oauth2/token",
-    "client-id": "<the_client_id_from_your_app>",
-    "client-secret": "<the_client_secret_from_your_app>",
-    "redirect-uri": "https://oauth2.dance/",
-    "scope": "https://mail.google.com"
-  }
+  [
+    ...
+    {
+      "machine": "<your_imap_address_or_email>",
+      "login": "<your_email>",
+      "port": "imaps",
+      "auth": "xoauth2",
+      "auth-url": "https://accounts.google.com/o/oauth2/auth",
+      "token-url": "https://accounts.google.com/o/oauth2/token",
+      "client-id": "<the_client_id_from_your_app>",
+      "client-secret": "<the_client_secret_from_your_app>",
+      "redirect-uri": "https://oauth2.dance/",
+      "scope": "https://mail.google.com"
+    },
+    ...
+  ]
 #+END_SRC
 
 These information will be used by oauth2 to retrieve the access-token.
