@@ -99,9 +99,9 @@ tried first.
 
 * Comparison with other xoauth2 implementations
 
-** [[https://github.com/ccrusius/auth-source-xoauth2][auth-source-xoauth2]]
+** auth-source-xoauth2
 
-This plugin takes inspirations from auth-source-xoauth2 to advice the
+This plugin takes inspirations from [[https://github.com/ccrusius/auth-source-xoauth2][auth-source-xoauth2]] to advice the
 auth-source-search backends to add xoauth2 access-token for
 authentication.  The implementation is independent and reuses many
 existing facilities in `auth-source.el', where auth-source-xoauth2
