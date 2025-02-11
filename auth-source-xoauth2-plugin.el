@@ -3,7 +3,7 @@
 ;; Copyright (C) 2024-2025  Free Software Foundation, Inc.
 
 ;; Author: Xiyue Deng <manphiz@gmail.com>
-;; Version: 0.1
+;; Version: 0.1.1
 ;; Package-Requires: ((emacs "28.1") (oauth2 "0.17"))
 
 ;; This file is not part of GNU Emacs.
