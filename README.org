@@ -1,6 +1,8 @@
 #+TITLE: Auth-source xoauth2 plugin
 #+DATE: 2024-11-08
 
+#+html: <a href="https://elpa.gnu.org/packages/auth-source-xoauth2-plugin.html"><img alt="GNU ELPA" src="https://elpa.gnu.org/packages/auth-source-xoauth2-plugin.svg"/></a>
+
 * Introduction
 
 This package provides a global minor mode for enabling support for
