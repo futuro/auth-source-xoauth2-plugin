@@ -14,10 +14,15 @@ extend the OAuth 2.0 Authentication Protocol and the JSON Web Token
 (JWT) to enable server-to-server authentication.  More info please
 check out [[https://stackoverflow.com/a/76389679/2337550][this stackoverflow answer]].
 
-* Setup
+* Installation
 
-To set up, please put this file in the `load-path' of Emacs, and add
-the following lines in your Emacs configuration:
+`auth-source-xoauth2-plugin' is on [[https://elpa.gnu.org/packages/auth-source-xoauth2-plugin.html][GNU ELPA]], and you can install it
+with `package-install' (see also [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Package-Installation.html][the Emacs document on how to use
+package-install]]).  Or you can clone the repository or simply download
+the ~auth-source-xoauth2-plugin.el~ file and put it anywhere in your
+Emacs' `load-path'.
+
+Then add the following lines in your Emacs configuration:
 
 #+BEGIN_SRC emacs-lisp
   (require 'auth-source-xoauth2-plugin)
