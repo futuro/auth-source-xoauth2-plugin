@@ -111,6 +111,29 @@ reimplemented most of the required functions itself.
 storage for storing temporary/ephemeral data tokens, where
 `auth-source-xoauth2' implemented its own storage.
 
+* Debugging
+
+In case you encounter any issues, you may consider enabling verbose
+messages to help debugging.  `auth-source-xoauth2-plugin' uses the
+same convention as `auth-source' for outputing verbose messages.  You
+may do the following:
+
+#+BEGIN_SRC emacs-lisp
+  (setq auth-source-debug t)
+#+END_SRC
+
+and check the =*Message*= buffer for logs.  You can enable even more
+verbose log by the following:
+
+#+BEGIN_SRC emacs-lisp
+  (setq auth-source-debug 'trivia)
+#+END_SRC
+
+NOTE: \'trivia will include your tokens for authentication in your
+=*Message*= buffer so be careful not to share the log with untrusted
+entities.
+
+
 * Notes on Implementation
 
 Currently the auth-source requires the searched entry must have
