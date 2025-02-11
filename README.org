@@ -53,14 +53,6 @@ the following:
 To disable, just toggle the minor mode off by calling `M-x
 auth-source-xoauth2-plugin-mode' again.
 
-auth-source uses the `secret' field in auth-source file as password
-for authentication, including xoauth2.  To decide which
-authentication method to use (e.g. plain password vs xoauth2), it
-inspects the `auth' field from the auth-source entry, and if the
-value is `xoauth2', it will try to gather data and get the access
-token for use of xoauth2 authentication; otherwise, it will fallback
-to the default authentication method.
-
 When xoauth2 authentication is enabled, it will try to get the
 following data from the auth-source entry: `auth-url', `token-url',
 `scope', `client-id', `client-secret', `redirect-uri', and optionally
@@ -88,14 +80,9 @@ settings):
   ]
 #+END_SRC
 
-These information will be used by oauth2 to retrieve the access-token.
-This package uses an advice to switch the auth-source search result
-from the `password' to the `access-token' it got, which in turn will
-be used to construct the xoauth2 authentication string, currently in
-nnimap-login and smtpmail-try-auth-method.  To really enable xoauth2
-in smtpmail, it will add \'xoauth2 to \'smtpmail-auth-supported (if it
-is not already in the list) using `add-to-list' so that xoauth2 is
-tried first.
+It will then use `oauth2.el' to retrieve the access-token with those
+information, use it to construct the oauth2 authentication string, and
+let `auth-source' do the rest.
 
 * Comparison with other xoauth2 implementations
 
@@ -136,8 +123,24 @@ entities.
 
 * Notes on Implementation
 
-Currently the auth-source requires the searched entry must have
-`secret' field set in the entry, which is not necessary when using
-xoauth2.  Therefore in the advice it temporarily disables checking
-for ~:secret~ if set and perform the search, and check the result
-before returning.
+`auth-source' uses the `secret' field in auth-source file as password
+for authentication, including xoauth2.  To decide which authentication
+method to use (e.g. plain password vs xoauth2), this plugin inspects
+the `auth' field from the auth-source entry, and if the value is
+`xoauth2', it will try to gather data and get the access token for use
+of xoauth2 authentication; otherwise, it will fallback to the default
+authentication method.
+
+This package uses an advice to switch the auth-source search result
+from the `password' to the `access-token' it got, which in turn will
+be used to construct the xoauth2 authentication string, currently in
+nnimap-login and smtpmail-try-auth-method.  To enable xoauth2 support
+in smtpmail, it adds \'xoauth2 to \'smtpmail-auth-supported (if it is
+not already in the list) using `add-to-list' so that xoauth2 is tried
+first.
+
+Note that currently `auth-source' requires the searched entry must
+have `secret' field set in the entry, which is not necessarily true
+when using xoauth2.  Therefore in the advice it temporarily disables
+checking for `:secret' perform the search in the backend, and ensure
+that `secret' contains the generated access-token before returning.
