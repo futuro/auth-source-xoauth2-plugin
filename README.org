@@ -97,9 +97,9 @@ in smtpmail, it will add \'xoauth2 to \'smtpmail-auth-supported (if it
 is not already in the list) using `add-to-list' so that xoauth2 is
 tried first.
 
-** Comparison with other xoauth2 implementations
+* Comparison with other xoauth2 implementations
 
-*** [[https://github.com/ccrusius/auth-source-xoauth2][auth-source-xoauth2]]
+** [[https://github.com/ccrusius/auth-source-xoauth2][auth-source-xoauth2]]
 
 This plugin takes inspirations from auth-source-xoauth2 to advice the
 auth-source-search backends to add xoauth2 access-token for
@@ -111,7 +111,7 @@ reimplemented most of the required functions itself.
 storage for storing temporary/ephemeral data tokens, where
 `auth-source-xoauth2' implemented its own storage.
 
-** Notes
+* Notes on Implementation
 
 Currently the auth-source requires the searched entry must have
 `secret' field set in the entry, which is not necessary when using
