@@ -99,7 +99,13 @@ expected that `token_url', `client_id', `client_secret', and
 (defun auth-source-xoauth2-plugin--enable ()
   "Enable auth-source-xoauth2-plugin."
   (unless (memq 'xoauth2 smtpmail-auth-supported)
-    (push 'xoauth2 smtpmail-auth-supported)
+    ;; smtpmail considers smtp request with a return value less than 400 to be
+    ;; successful, but for Gmail when an xoauth2 request fails it returns 334
+    ;; server challenge, and waiting for a subsequent request with the correct
+    ;; credentials which will never happen.  Putting 'xoauth2 as the last entry
+    ;; in smtpmail-auth-supported so that it is tried last.  See also
+    ;; https://debbugs.gnu.org/78366.
+    (add-to-list smtpmail-auth-supported 'xoauth2 t)
     (setq auth-source-xoauth2-plugin--enabled-xoauth2-by-us t))
 
   (advice-add #'auth-source-search-backends :around
