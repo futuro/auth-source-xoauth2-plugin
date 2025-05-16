@@ -18,9 +18,9 @@ check out [[https://stackoverflow.com/a/76389679/2337550][this stackoverflow ans
 
 `auth-source-xoauth2-plugin' is on [[https://elpa.gnu.org/packages/auth-source-xoauth2-plugin.html][GNU ELPA]], and you can install it
 with `package-install' (see also [[https://www.gnu.org/software/emacs/manual/html_node/emacs/Package-Installation.html][the Emacs document on how to use
-package-install]]).  Or you can clone the repository or simply download
-the ~auth-source-xoauth2-plugin.el~ file and put it anywhere in your
-Emacs' `load-path'.
+package-install]]).  Or you can clone the repository from [[https://gitlab.com/manphiz/auth-source-xoauth2-plugin/][GitLab]] or
+simply download the ~auth-source-xoauth2-plugin.el~ file and put it
+anywhere in your Emacs' `load-path'.
 
 Then add the following lines in your Emacs configuration:
 
