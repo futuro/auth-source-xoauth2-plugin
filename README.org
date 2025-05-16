@@ -120,6 +120,10 @@ NOTE: \'trivia will include your tokens for authentication in your
 =*Message*= buffer so be careful not to share the log with untrusted
 entities.
 
+* Bug reporting
+
+Please use `M-x report-emacs-bug' or open an issue on [[https://gitlab.com/manphiz/auth-source-xoauth2-plugin/-/issues][GitLab]] and
+include debug info collected following section [[file:README.org::*Debugging][Debugging]].
 
 * Notes on Implementation
 
