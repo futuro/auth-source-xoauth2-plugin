@@ -105,7 +105,7 @@ expected that `token_url', `client_id', `client_secret', and
     ;; credentials which will never happen.  Putting 'xoauth2 as the last entry
     ;; in smtpmail-auth-supported so that it is tried last.  See also
     ;; https://debbugs.gnu.org/78366.
-    (add-to-list smtpmail-auth-supported 'xoauth2 t)
+    (add-to-list 'smtpmail-auth-supported 'xoauth2 t)
     (setq auth-source-xoauth2-plugin--enabled-xoauth2-by-us t))
 
   (advice-add #'auth-source-search-backends :around
