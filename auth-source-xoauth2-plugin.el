@@ -40,6 +40,16 @@
 (require 'oauth2)
 (require 'smtpmail)
 
+(defun auth-source-xoauth2-plugin--deobfuscate-vals (auth-data)
+  (let ((copy (map-copy auth-data)))
+    (map-do (lambda (k v)
+              (map-put! copy k
+                        (if (functionp v)
+                            (funcall v)
+                          v)))
+            copy)
+    copy))
+
 (defun auth-source-xoauth2-plugin--search-backends (orig-fun &rest args)
   "Perform `auth-source-search' and set password as access-token when requested.
 Calls ORIG-FUN which would be `auth-source-search-backends' with
