@@ -80,7 +80,7 @@ expected that `token_url', `client_id', `client_secret', and
                       :client-secret
                       :redirect-uri
                       :state)
-                auth-data
+                (auth-source-xoauth2-plugin--deobfuscate-vals auth-data)
               (auth-source-do-debug "Using oauth2 to auth and store token...")
               (let ((token (oauth2-auth-and-store
                             auth-url token-url scope client-id client-secret
